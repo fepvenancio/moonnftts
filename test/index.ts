@@ -75,9 +75,9 @@ describe("moonNft", function () {
       // NOTE: Sometimes the seconds may be off by 1, As long as the seconds are
       // between the buffer zone, we"ll pass the test
       if (result > target - buffer && result <= target) {
-        assert.isTrue(false);
-      } else {
         assert.isTrue(true);
+      } else {
+        assert.isTrue(false);
       }
     });
 

@@ -16,18 +16,20 @@ async function main() {
   // manually to make sure everything is compiled
   // await hre.run('compile');
 
-  const IPFS_IMAGE_METADATA_URI = `ipfs://QmaDDcb7VAk3BkhTySs7Ak6vdR8vz4WUnZvuXJ62mQjdx2/`;
-  const IPFS_HIDDEN_IMAGE_METADATA_URI = `ipfs://QmaDDcb7VAk3BkhTySs7Ak6vdR8vz4WUnZvuXJ62mQjdx2/hidden.json`;
+  const IPFS_IMAGE_METADATA_URI = `ipfs://${process.env
+    .IPFS_IMAGE_METADATA_CID!}/`;
+  const IPFS_HIDDEN_IMAGE_METADATA_URI = `ipfs://${process.env
+    .IPFS_IMAGE_METADATA_CID!}/hidden.json`;
   // eslint-disable-next-line prettier/prettier
-  const NFT_MINT_DATE = new Date("May 29, 2022 07:00:00").getTime().toString().slice(0, 10);
+  const NFT_MINT_DATE = new Date(process.env.NFT_MINT_DATE!).getTime().toString().slice(0, 10);
 
   // We get the contract to deploy
   const MoonNft = await ethers.getContractFactory("MoonNFT");
   const moonNft = await MoonNft.deploy(
-    "MOON NFT",
-    "M00N",
-    0,
-    1,
+    process.env.PROJECT_NAME!,
+    process.env.PROJECT_SYMBOL!,
+    process.env.MINT_COST!,
+    process.env.MAX_SUPPLY!,
     NFT_MINT_DATE,
     IPFS_IMAGE_METADATA_URI,
     IPFS_HIDDEN_IMAGE_METADATA_URI

@@ -1,16 +1,18 @@
-import * as dotenv from "dotenv";
-
 import { HardhatUserConfig, task } from "hardhat/config";
 import "@nomiclabs/hardhat-etherscan";
 import "@nomiclabs/hardhat-waffle";
+import "@nomiclabs/hardhat-ethers";
 import "@typechain/hardhat";
-import "hardhat-gas-reporter";
 import "solidity-coverage";
+import "hardhat-gas-reporter";
 import { solidity } from "ethereum-waffle";
 import chai from "chai";
+import "@openzeppelin/hardhat-upgrades";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 chai.use(solidity);
-dotenv.config();
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -28,10 +30,9 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 const config: HardhatUserConfig = {
   solidity: "0.8.11",
   networks: {
-    ropsten: {
-      url: process.env.RINKEBY_URL || "",
-      accounts:
-        process.env.DEPLOYER_PRIVATE_KEY !== undefined ? [process.env.DEPLOYER_PRIVATE_KEY] : [],
+    rinkeby: {
+      url: `https://eth-rinkeby.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`,
+      accounts: [`0x${process.env.DEPLOYER_PRIVATE_KEY}`],
     },
   },
   gasReporter: {
