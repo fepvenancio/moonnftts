@@ -149,15 +149,12 @@ describe("moonNft", function () {
         expect(
           await (await moonNft.walletOfOwner(account1.address)).toString()
         ).eq(bn.toString());
-        // assert(bn.toString(), ethers.BigNumber.from(result).toString());
       });
     });
   });
 
   describe("Updating Contract State", async () => {
     describe("Success", async () => {
-      let result;
-
       beforeEach(async () => {
         const NFT_MINT_DATE = Date.now().toString().slice(0, 10);
 
@@ -206,7 +203,7 @@ describe("moonNft", function () {
       });
 
       it("Sets the base extension", async () => {
-        const extension = ".example" // Different from the default contract state
+        const extension = ".example"; // Different from the default contract state
         const setExtensionTx = await moonNft.setBaseExtension(extension);
         await setExtensionTx.wait();
         expect(await moonNft.baseExtension()).to.equal(extension);
