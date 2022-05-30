@@ -8,6 +8,7 @@ import "hardhat-gas-reporter";
 import { solidity } from "ethereum-waffle";
 import chai from "chai";
 import "@openzeppelin/hardhat-upgrades";
+import "./tasks/nft";
 import * as dotenv from "dotenv";
 
 dotenv.config();

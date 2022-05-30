@@ -1,3 +1,12 @@
+This is a demo repositorie, use it at your own risk.
+
+This is the same contract as moonnft but with a different stack: Typescript, Hardhat, Solidity; 
+
+I'm using tasks to deploy contract and mint NFTs.
+
+Have fun.
+
+
 # Advanced Sample Hardhat Project
 
 This project demonstrates an advanced Hardhat use case, integrating other tools commonly used alongside Hardhat in the ecosystem.
